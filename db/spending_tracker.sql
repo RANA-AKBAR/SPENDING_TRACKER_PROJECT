@@ -5,25 +5,25 @@ DROP TABLE IF EXISTS spendingtags;
 
 CREATE TABLE spendingtags(
   id SERIAL4 PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
+  type VARCHAR(255)
 );
 
 CREATE TABLE merchants(
   id SERIAL4 PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(255)
 );
 
 CREATE TABLE transactions(
   id SERIAL4 PRIMARY KEY,
-  date DATE NOT NULL,
-  amount INT4,
-  merchant_id REFERENCES merchants CASCADE on DELETE,
-  spendingtag_id REFERENCES spendingtags CASCADE on DELETE
+  date DATE,
+  amount INT8,
+  merchant_id INT8 REFERENCES merchants(id),
+  spendingtag_id INT8 REFERENCES spendingtags(id)
 );
 
 CREATE TABLE users(
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(255),
-  budget INT4,
-  transactions_id REFERENCES transactions
+  budget INT8,
+  transactions_id INT8 REFERENCES transactions(id)
 );

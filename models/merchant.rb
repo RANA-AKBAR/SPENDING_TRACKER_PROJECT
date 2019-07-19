@@ -8,18 +8,18 @@ class Merchant
     @name = options['name']
   end
 
-  def read
-    sql = w
-
-  end
-
-  def update
-
-  end
-
-  def delete
-
-  end
+  # def read
+  #   sql = w
+  #
+  # end
+  #
+  # def update
+  #
+  # end
+  #
+  # def delete
+  #
+  # end
 
 
 

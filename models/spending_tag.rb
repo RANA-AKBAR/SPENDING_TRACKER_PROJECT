@@ -1,26 +1,36 @@
 class SpendingTag
 
-  attr_accessor :name, :tag
+  attr_accessor :type
   attr_reader :id
 
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @name = options['name']
+    @type = options['type']
   end
 
-  def read
-
-  end
-
-  def update
-
-  end
-
-  def delete
+  def save
+    sql = 'INSERT INTO spendingtags(type) VALUES ($1) RETURNING id'
+    values = [@type]
+    @id= SqlRunner.run(sql, values)[0]['id']
 
   end
 
-
-
+#
+#   def spendingtag
+#     sql = 'SELECT * FROM spendingtags WHERE id = $1'
+#     values =[@id]
+#     return SqlRunner.run(sql, values)
+#   end
+#
+#   def update
+#
+#   end
+#
+#   def delete
+#
+#   end
+#
+#
+#
 end
