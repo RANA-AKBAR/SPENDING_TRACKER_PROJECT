@@ -7,7 +7,11 @@ require_relative("./db/sqlrunner.rb")
 also_reload('./models/*')
 
 get '/' do
-  @transaction1 = Transaction.new({'amount' => 1, 'date' => '06/23//1989'})
-  @transaction = Transaction.all
+  @transactions = Transaction.all
+  erb(:index)
+end
+
+get '/transaction/:id' do
+  @transaction = Transaction.find(params[:id])
   erb(:index)
 end

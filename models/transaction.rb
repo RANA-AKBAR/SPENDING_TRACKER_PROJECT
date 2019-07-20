@@ -4,7 +4,7 @@ class Transaction
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @amount = options['amount'].to_i
+    @amount = options['amount'].to_f
     @date = options['date']
     @spendingtag_id = options['spendingtag_id']
     @merchant_id = options['merchant_id']
@@ -21,6 +21,13 @@ class Transaction
   def transaction
     sql = 'SELECT * FROM transactions WHERE id = $1'
     values =[@id]
+    returned_tag = SqlRunner.run(sql, values)[0]
+    return Transaction.new(returned_tag)
+  end
+
+  def find(id)
+    sql = 'SELECT * FROM transactions WHERE id = $1'
+    values =[id]
     returned_tag = SqlRunner.run(sql, values)[0]
     return Transaction.new(returned_tag)
   end

@@ -1,1 +1,32 @@
-<%=  @transaction %>
+
+<h2>TRANSACTIONS</h2>
+
+<div id="transaction-wrapper">
+<% @transactions.each do |transaction| %>
+
+<div class="transaction">
+  <table style="width:100%">
+
+      <TABLE border="15"
+              summary="This table   expenses
+                       ">
+    <CAPTION>
+
+ </CAPTION>
+    <tr>
+      <!-- <th>Transaction</th> -->
+      <th>Date</th>
+      <th>Amount</th>
+    </tr>
+    <tr>
+      <!-- <td><%= transaction.id %></td> -->
+      <td><a href="/transaction/<%= transaction.id %>"><%= transaction.date %></a></td>
+      <td><%= transaction.amount %></td>
+    </TR>
+
+    </TABLE>
+</table>
+</div>
+
+<% end %>
+</div>

@@ -10,8 +10,14 @@ require_relative("../db/sqlrunner.rb")
 class TransactionTest < MiniTest::Test
 
   def setup()
-    Transaction.delete_all
     @transaction1 = Transaction.new({'amount' => 1, 'date' => '06/23//1989'})
+    @transaction2 = Transaction.new({'amount' => 2, 'date' => '06/23//1989'})
+    @transaction3 = Transaction.new({'amount' => 3, 'date' => '06/23//1989'})
+    @transaction4 = Transaction.new({'amount' => 4, 'date' => '06/23//1989'})
+    @transaction1.save
+    @transaction2.save
+    @transaction3.save
+    @transaction4.save
   end
 
   def test_has_id

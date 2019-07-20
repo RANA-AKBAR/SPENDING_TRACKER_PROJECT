@@ -1,0 +1,23 @@
+table, th, td {
+  border: 1px solid black;
+}
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th {
+  text-align: left;
+}
+
+.hero-image {
+  background-image: url("../public/business-plan-close-up-contemporary-908292.jpg)"; /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 500px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
