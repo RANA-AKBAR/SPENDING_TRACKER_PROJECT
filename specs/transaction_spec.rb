@@ -7,11 +7,11 @@ require_relative("../models/transaction.rb")
 require_relative("../db/sqlrunner.rb")
 
 
-class MerchantTest < MiniTest::Test
+class TransactionTest < MiniTest::Test
 
   def setup()
-    Merchant.delete_all
-    @tag = Merchant.new({'name' => 'asda'})
+    Transaction.delete_all
+    @tag = Transaction.new({'name' => 'asda'})
   end
 
   def test_has_id
@@ -26,7 +26,7 @@ class MerchantTest < MiniTest::Test
 
   def test_returns_tags
     @tag.save
-    assert_equal('asda', @tag.merchant.name)
+    assert_equal('asda', @tag.transaction.name)
   end
 
   def test_updates
@@ -39,14 +39,14 @@ class MerchantTest < MiniTest::Test
   def test_delete
     @tag.save
     @tag.delete
-    assert_equal(false, Merchant.all.include?(@tag))
+    assert_equal(false, Transaction.all.include?(@tag))
   end
 
 
   def test_delete_all
     @tag.save
-    Merchant.delete_all
-    assert_equal(0, Merchant.all.count())
+    Transaction.delete_all
+    assert_equal(0, Transaction.all.count())
   end
 
 
