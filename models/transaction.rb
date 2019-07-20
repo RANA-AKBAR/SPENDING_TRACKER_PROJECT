@@ -4,14 +4,14 @@ class Transaction
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @amount = options['amount'].to_f if options['amount']
+    @amount = options['amount'].to_i
     @date = options['date']
     @spendingtag_id = options['spendingtag_id']
     @merchant_id = options['merchant_id']
   end
 
   def save
-    sql = 'INSERT INTO transactions(amount) VALUES ($1) RETURNING id'
+    sql = 'INSERT INTO transactions(amount, date, spendingtag_id, merchant_id) VALUES ($1,$2,$3,$4) RETURNING id'
     values = [@amount, @date,@spendingtag_id, @merchant_id]
     @id= SqlRunner.run(sql, values)[0]['id']
 
@@ -26,8 +26,8 @@ class Transaction
   end
 
   def update
-    sql = 'UPDATE transactions SET amount = ($1) WHERE id = $2'
-    values = [@amount,@id]
+    sql = 'UPDATE transactions SET (amount, date, spendingtag_id, merchant_id) = ($1, $2, $3, $4) WHERE id = $5'
+    values = [@amount, @date,@spendingtag_id, @merchant_id, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -45,6 +45,7 @@ class Transaction
   end
 
   def self.delete_all
-      sql = 'DELETE FROM transactions'
-      SqlRunner.run(sql)
+    sql = 'DELETE FROM transactions'
+    SqlRunner.run(sql)
   end
+end

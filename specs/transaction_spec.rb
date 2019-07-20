@@ -11,40 +11,40 @@ class TransactionTest < MiniTest::Test
 
   def setup()
     Transaction.delete_all
-    @tag = Transaction.new({'name' => 'asda'})
+    @transaction1 = Transaction.new({'amount' => 1, 'date' => '06/23//1989'})
   end
 
   def test_has_id
-    @tag.save
-    result = @tag.id.to_i
+    @transaction1.save
+    result = @transaction1.id.to_i
     assert_equal(true, result.integer?)
   end
 
   def test_has_name
-  assert_equal('asda', @tag.name)
+    assert_equal(1.0, @transaction1.amount)
   end
 
   def test_returns_tags
-    @tag.save
-    assert_equal('asda', @tag.transaction.name)
+    @transaction1.save
+    assert_equal(1.0, @transaction1.transaction.amount)
   end
 
   def test_updates
-    @tag.save
-    @tag.name = 'spar'
-    @tag.update
-    assert_equal('spar', @tag.name)
+    @transaction1.save
+    @transaction1.amount = 2
+    @transaction1.update
+    assert_equal(2.0, @transaction1.amount)
   end
 
   def test_delete
-    @tag.save
-    @tag.delete
-    assert_equal(false, Transaction.all.include?(@tag))
+    @transaction1.save
+    @transaction1.delete
+    assert_equal(false, Transaction.all.include?(@transaction1))
   end
 
 
   def test_delete_all
-    @tag.save
+    @transaction1.save
     Transaction.delete_all
     assert_equal(0, Transaction.all.count())
   end
