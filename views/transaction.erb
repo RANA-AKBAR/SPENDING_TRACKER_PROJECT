@@ -1,1 +1,15 @@
-<%= yield @transaction %>
+<h1>TRANSACTION <%= @transaction.id %></h1>
+
+
+
+<table>
+  <tr>
+    <th>date</th>
+    <th>amount</th>
+  </tr>
+  <tr>
+    <td> <%= @transaction.date %></td>
+    <td><%= @transaction.amount %></td>
+  </tr>
+
+</table>

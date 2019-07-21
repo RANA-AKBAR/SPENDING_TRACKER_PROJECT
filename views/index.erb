@@ -1,5 +1,5 @@
 
-<h2>TRANSACTIONS</h2>
+<h1>TRANSACTIONS</h1>
 
 <div id="transaction-wrapper">
 <% @transactions.each do |transaction| %>
@@ -8,9 +8,7 @@
   <table style="width:100%">
 
       <TABLE border="15"
-              summary="This table   expenses
-                       ">
-    <CAPTION>
+
 
  </CAPTION>
     <tr>
@@ -20,7 +18,7 @@
     </tr>
     <tr>
       <!-- <td><%= transaction.id %></td> -->
-      <td><a href="/transaction/<%= transaction.id %>"><%= transaction.date %></a></td>
+      <td><a href="/transaction/<%= transaction.id %>"> <%= transaction.date %></a></td>
       <td><%= transaction.amount %></td>
     </TR>
 

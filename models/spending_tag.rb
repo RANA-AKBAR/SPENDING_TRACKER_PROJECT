@@ -37,10 +37,13 @@ class SpendingTag
     SqlRunner.run(sql,values)
   end
 
-  def self.all
-    sql = 'SELECT * FROM spendingtags'
-    returned_tag = SqlRunner.run(sql)
-    return returned_tag.map { |tag| SpendingTag.new(tag) }
+  def self.find(id)
+    sql = "SELECT * FROM spendingtags
+    WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, values).first
+    tag = SpendingTag.new(result)
+    return tag
   end
 
   def self.delete_all

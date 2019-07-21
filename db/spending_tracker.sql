@@ -15,8 +15,8 @@ CREATE TABLE merchants(
 
 CREATE TABLE transactions(
   id SERIAL4 PRIMARY KEY,
-  date DATE,
-  amount INT8,
+  date timestamp,
+  amount float,
   merchant_id INT8 REFERENCES merchants(id),
   spendingtag_id INT8 REFERENCES spendingtags(id)
 );
@@ -24,6 +24,6 @@ CREATE TABLE transactions(
 CREATE TABLE users(
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(255),
-  budget INT8,
+  budget float,
   transactions_id INT8 REFERENCES transactions(id)
 );

@@ -25,12 +25,6 @@ class Transaction
     return Transaction.new(returned_tag)
   end
 
-  def find(id)
-    sql = 'SELECT * FROM transactions WHERE id = $1'
-    values =[id]
-    returned_tag = SqlRunner.run(sql, values)[0]
-    return Transaction.new(returned_tag)
-  end
 
   def update
     sql = 'UPDATE transactions SET (amount, date, spendingtag_id, merchant_id) = ($1, $2, $3, $4) WHERE id = $5'
@@ -55,4 +49,15 @@ class Transaction
     sql = 'DELETE FROM transactions'
     SqlRunner.run(sql)
   end
+
+  def self.find(id)
+    sql = "SELECT * FROM transactions
+    WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, values).first
+    transaction = Transaction.new(result)
+    return transaction
+  end
+
+
 end
