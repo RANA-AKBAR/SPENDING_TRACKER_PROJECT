@@ -1,0 +1,19 @@
+<h2>Merchants</h2>
+
+<form method="post" action="/merchants/<%=@merchants.id %>">
+ <label for="name-field">name:</label>
+ <input
+ type = "text"
+ name = "name"
+ id = "name-field"
+ value = "<%=@merchants.name%>"
+ />
+
+ <input type="submit" value = "Edit" >
+  </form>
+
+</br>
+
+<form method = "post" action = "/merchants/<%=@merchants.id%>/delete">
+<input type="submit" value = "Delete" >
+</form>

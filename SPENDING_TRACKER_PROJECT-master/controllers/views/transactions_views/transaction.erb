@@ -1,0 +1,27 @@
+<h2>Transactions</h2>
+
+<H3> total Amount Spent: <%=@total%></h3>
+
+<h3>Total budget: 300</h3>
+
+<% if @total >= 300%>
+<h3> ALERT!! you have gone above your budget!!!! </h3>
+<%end%>
+
+<% @transactions.each do |transaction| %>
+<p>Amount Spent: <%=transaction.amount%></p>
+<p>timestamp: <%=transaction.date%></p>
+<p>Tag: <%=transaction.find_spendingtag_type%></p>
+<p>merchant: <%=transaction.find_merchant_name%></p>
+<form method="get" action="/transactions/<%= transaction.id%>/edit">
+  <input type="submit" value="Edit">
+</form>
+
+<form method="post" action="/transactions/<%=transaction.id%>/delete">
+  <input type="submit" value="delete">
+</form>
+
+</br>
+<%end%>
+
+<p><a href="/transactions/new">Add New Transaction</p>

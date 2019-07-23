@@ -1,0 +1,8 @@
+<h2>Merchants</h2>
+
+<%@merchants.each do |merchant| %>
+<p><a href="/merchants/<%=merchant.id%>/edit"><%=merchant.name %></a></p>
+<% end %>
+<form method ="get" action="/merchants/new">
+ <input type="submit" value = "Add merchant"/>
+  </form>
