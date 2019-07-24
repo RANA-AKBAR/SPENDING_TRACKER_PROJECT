@@ -1,0 +1,25 @@
+<h2>Transactions</h2>
+
+<form method="post" action="/transactions/add/new">
+  <label for="amount"> Amount Spent:</label>
+  <input id="amount" type="number" name ="amount">
+
+  <label for="date"> Date:</label>
+  <input id="date" type="datetime-local" name ="date">
+
+  <label for="spendingtag_id"> Tag:</label>
+  <select id="spendingtag_id" name="spendingtag_id">
+    <%@spendingtags.each do |spendingtag| %>
+    <option value=<%= spendingtag.id%>> <%=spendingtag.type%></option>
+    <%end%>
+  </select>
+
+  <label for="merchant_id"> Merchant:</label>
+  <select id="merchant_id" name="merchant_id">
+    <% @merchants.each do |merchant| %>
+    <option value=<%= merchant.id%>> <%=merchant.name%></option>
+    <%end%>
+  </select>
+
+  <input type="submit" value="Add to the list">
+</form>

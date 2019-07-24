@@ -22,6 +22,8 @@ CREATE TABLE transactions(
   spendingtag_id INT8 REFERENCES spendingtags(id) ON DELETE CASCADE
 );
 
+
+
 ALTER TABLE transactions
 DROP FOREIGN KEY FK_merchant_id REFERENCES merchants(id);
 
