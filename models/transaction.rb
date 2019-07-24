@@ -1,6 +1,6 @@
 class Transaction
-  attr_reader :id, :merchant_id, :spendingtag_id
-  attr_accessor :amount, :date
+  attr_reader :id
+  attr_accessor :amount, :date, :merchant_id, :spendingtag_id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -8,6 +8,44 @@ class Transaction
     @date = options['date']
     @spendingtag_id = options['spendingtag_id']
     @merchant_id = options['merchant_id']
+  end
+
+  def find_spendingtag_type
+    sql = "SELECT type FROM spendingtags WHERE spendingtags.id = $1"
+    values = [@spendingtag_id]
+    SqlRunner.run(sql, values)[0]['type']
+  end
+
+
+  def find_merchant_name
+    sql = "SELECT name FROM merchants WHERE merchants.id = $1"
+    values = [@merchant_id]
+    SqlRunner.run(sql, values)[0]['name']
+  end
+
+  def self.total_amount_spent
+    sql = "SELECT * FROM transactions"
+    transactions = SqlRunner.run(sql)
+    amount = 0
+    total =  transactions.map {|single_transaction| Transaction.new(single_transaction).amount}
+    for single_amount in total
+      amount += single_amount
+    end
+    return amount
+  end
+
+  def self.select_specific_spendingtags(id)
+    sql = "SELECT * FROM transactions"
+    transactions = SqlRunner.run(sql)
+    amount = 0
+    all_transactions =  transactions.map {|single_transaction| Transaction.new(single_transaction)}
+    for single_transaction in  all_transactions
+       if single_transaction.spendingtag_id == id
+         amount += single_transaction.amount
+      end
+      return amount
+    end
+
   end
 
   def save

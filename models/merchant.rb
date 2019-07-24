@@ -1,3 +1,5 @@
+require_relative('../db/sqlrunner.rb')
+
 class Merchant
 
   attr_accessor :name
@@ -11,7 +13,7 @@ class Merchant
   def save
     sql = 'INSERT INTO merchants(name) VALUES ($1) RETURNING id'
     values = [@name]
-    @id= SqlRunner.run(sql, values)[0]['id']
+    @id= SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
 
@@ -35,11 +37,19 @@ class Merchant
     SqlRunner.run(sql,values)
   end
 
+  def self.find(id)
+    sql = 'SELECT * FROM merchants WHERE id = $1'
+    values = [id]
+    merchant = SqlRunner.run(sql, values)
+    return Merchant.new(merchant.first)
+  end
+
   def self.all
     sql = 'SELECT * FROM merchants'
     returned_tag = SqlRunner.run(sql)
     return returned_tag.map { |tag| Merchant.new(tag) }
   end
+
 
   def self.delete_all
       sql = 'DELETE FROM merchants'

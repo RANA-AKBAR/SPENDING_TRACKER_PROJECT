@@ -1,0 +1,7 @@
+require( 'sinatra' )
+require( 'sinatra/contrib/all' )
+require_relative('./controllers/merchant_controller')
+require_relative('./controllers/spendingtag_controller')
+require_relative('./controllers/transaction_Controller')
+# require_relative("./db/sqlrunner.rb")
+# also_reload('../models/*')

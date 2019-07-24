@@ -1,0 +1,9 @@
+<h2>Tags</h2>
+
+<% @spendingtags.each do |spendingtag| %>
+<p><a href="/spendingtags/<%=spendingtag.id%>/edit"><%=spendingtag.type%></a></p>
+<%end%>
+
+<form method="get" action="/spendingtags/new">
+  <input type="submit" value="Add Tag"/>
+</form>

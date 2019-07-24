@@ -13,13 +13,21 @@ CREATE TABLE merchants(
   name VARCHAR(255)
 );
 
+
 CREATE TABLE transactions(
   id SERIAL4 PRIMARY KEY,
   date timestamp,
   amount float,
-  merchant_id INT8 REFERENCES merchants(id),
-  spendingtag_id INT8 REFERENCES spendingtags(id)
+  merchant_id INT8 REFERENCES merchants(id) ON DELETE CASCADE,
+  spendingtag_id INT8 REFERENCES spendingtags(id) ON DELETE CASCADE
 );
+
+
+
+ALTER TABLE transactions
+DROP FOREIGN KEY FK_merchant_id REFERENCES merchants(id);
+
+
 
 CREATE TABLE users(
   id SERIAL4 PRIMARY KEY,
